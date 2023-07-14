@@ -12,7 +12,7 @@
 
 1. Start up the docker container with the following command:
 
-   *You'll need to use the command defined in the [Database]() section if you plan on using the database directly*
+   *You'll need to use the command defined in the [Database](#Database) section if you plan on using the database directly*
 
     `docker run -p 8080:8080 test_cloud_function`
 
