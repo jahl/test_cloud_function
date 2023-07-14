@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 require_relative './config/init'
 
-
-
 FunctionsFramework.http "delete_images" do |_request|
   client = PlentyClient.new
   item_id = 1365220
