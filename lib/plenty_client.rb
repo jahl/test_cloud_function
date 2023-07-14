@@ -1,5 +1,4 @@
-require 'faraday'
-require 'json'
+# frozen_string_literal: true
 
 class PlentyClient
   def get(url, params={})

@@ -1,12 +1,6 @@
 # frozen_string_literal: true
+require_relative './config/init'
 
-require 'active_record'
-require 'functions_framework'
-require 'dotenv'
-Dotenv.load
-
-require_relative './lib/plenty_client'
-require_relative './config/database'
 
 
 FunctionsFramework.http "delete_images" do |_request|
