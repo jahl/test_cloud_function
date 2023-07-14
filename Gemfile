@@ -5,4 +5,4 @@ gem 'dotenv'
 gem 'faraday'
 gem 'activerecord'
 gem 'mysql2'
-
+gem 'activeresource'
