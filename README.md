@@ -25,5 +25,20 @@
       7616481555c1   buddy_default   bridge    local
     ```
 
-4. Whenever you run the cloud function docker command, you should create a link between the cloud function and the DB container like so:
+4. If this is the first time you're running the function, remember to build it with the following command:
+`docker build -t test_cloud_function .`
+
+5. Whenever you run the cloud function docker command, you should create a link between the cloud function and the DB container like so:
   `docker run -p 8080:8080 --network buddy_default --link buddy-mysql-1:mysql test_cloud_function`
+
+### Registering changes
+
+There is currently no hot reload setup for this cloud function, so you'll have to rebuild the docker image after every change:
+
+`docker build -t test_cloud_function .`
+
+### Using the function
+
+Start up the docker container with the following command:
+
+`docker run -p 8080:8080 --network buddy_default --link buddy-mysql-1:mysql test_cloud_function`
