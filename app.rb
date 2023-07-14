@@ -1,12 +1,36 @@
-require "functions_framework"
+# frozen_string_literal: true
 
-# Global variable, but scoped only within one function instance.
-$count = 0
+require 'functions_framework'
+require 'dotenv'
+require 'faraday'
+require 'json'
 
-FunctionsFramework.http "execution_count" do |_request|
-  $count += 1
+Dotenv.load
 
-  # NOTE: the total function invocation count across all instances
-  # may not be equal to this value!
-  "Instance execution count: #{$count}"
+def connection
+  Faraday.new(url: ENV['BASE_URL']) do |faraday|
+    faraday.headers['Authorization'] = "Bearer #{ENV['TOKEN']}"
+    faraday.adapter Faraday.default_adapter
+  end
+end
+
+def plenty_client_get(url, params={})
+  response = connection.get url, params
+  JSON.parse(response.body)
+end
+
+def plenty_client_delete(url)
+  response = connection.delete url
+  JSON.parse(response.body)
+end
+
+FunctionsFramework.http "delete_images" do |_request|
+  item_id = 1365220
+  url = "items/#{item_id}/images"
+  delete_url = "images"
+  images = plenty_client_get(url)
+
+  images.each do |image|
+    puts "id: #{image['id']}, url: #{image['url']}"
+  end
 end

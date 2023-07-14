@@ -20,4 +20,4 @@ RUN bundle install
 COPY . .
 
 # Define the command that should be run when the Docker container starts up
-CMD ["bundle", "exec", "functions-framework-ruby", "--target",  "execution_count"]
+CMD ["bundle", "exec", "functions-framework-ruby", "--target",  "delete_images"]
